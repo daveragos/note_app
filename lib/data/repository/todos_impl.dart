@@ -29,9 +29,10 @@ class TodosRepositoryImpl extends TodosRepository {
   Future<void> deleteTodo(Todo todo) async {
     final todos = await loadTodos();
     //remove the todo from the list
-    todos.values.remove(todo);
+    final newTodo =
+        todos.values.where((element) => element.id != todo.id).toList();
     //save the list
-    await files.write(path, jsonEncode(todos.toJson()));
+    await files.write(path, jsonEncode(Todos(values: newTodo).toJson()));
   }
 
   @override
@@ -45,8 +46,10 @@ class TodosRepositoryImpl extends TodosRepository {
   Future<void> saveTodo(Todo todo) async {
     final todos = await loadTodos();
     //add the todo to the list
-    todos.values.add(todo);
+    final newTodo =
+        todos.values.where((element) => element.id != todo.id).toList();
+    newTodo.add(todo);
     //save the list
-    await files.write(path, jsonEncode(todos.toJson()));
+    await files.write(path, jsonEncode(Todos(values: newTodo).toJson()));
   }
 }
