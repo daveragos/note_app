@@ -6,19 +6,19 @@ part of 'module.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getTodosHash() => r'0265f5ae2bd57417beac16d88ea2a8557fac4bbc';
+String _$todosListHash() => r'7cf9bdf5911f53d91efdc940cf25bb62472114dd';
 
-/// See also [getTodos].
-@ProviderFor(getTodos)
-final getTodosProvider = AutoDisposeFutureProvider<Todos>.internal(
-  getTodos,
-  name: r'getTodosProvider',
+/// See also [todosList].
+@ProviderFor(todosList)
+final todosListProvider = AutoDisposeFutureProvider<Todos>.internal(
+  todosList,
+  name: r'todosListProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$getTodosHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$todosListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef GetTodosRef = AutoDisposeFutureProviderRef<Todos>;
+typedef TodosListRef = AutoDisposeFutureProviderRef<Todos>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -21,7 +21,7 @@ class TodosRepositoryImpl extends TodosRepository {
   }
 
   @override
-  Future<void> deleteAllTodos(Todo todo) async {
+  Future<void> deleteAllTodos() async {
     await files.delete(path);
   }
 
