@@ -45,6 +45,7 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
           if (mounted) {
             setState(() {
               isCompleted = value.completed;
+              edited = false;
             });
           }
         }
