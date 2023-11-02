@@ -46,10 +46,21 @@ class TodosRepositoryImpl extends TodosRepository {
   Future<void> saveTodo(Todo todo) async {
     final todos = await loadTodos();
     //add the todo to the list
-    final newTodo =
-        todos.values.where((element) => element.id != todo.id).toList();
-    newTodo.add(todo);
-    //save the list
-    await files.write(path, jsonEncode(Todos(values: newTodo).toJson()));
+    final existing =
+        todos.values.firstWhereOrNull((element) => element.id == todo.id);
+    if (existing != null) {
+      final newTodo = existing.copyWith(
+        title: todo.title,
+        description: todo.description,
+        completed: todo.completed,
+      );
+      final newTodos = todos.values.map((t) {
+        return t.id == todo.id ? newTodo : t;
+      }).toList();
+      await files.write(path, jsonEncode(Todos(values: newTodos).toJson()));
+    } else {
+      final newTodos = [...todos.values, todo];
+      await files.write(path, jsonEncode(Todos(values: newTodos).toJson()));
+    }
   }
 }

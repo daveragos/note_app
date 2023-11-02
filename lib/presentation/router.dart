@@ -15,11 +15,9 @@ final router = GoRouter(
           builder: (context, state) => const TodosEdit(),
         ),
         GoRoute(
-          path: ':id',
-          builder: (context, state) => TodosEdit(
-            todoId: state.pa,
-          ),
-        ),
+            path: ':id',
+            builder: (context, state) =>
+                TodosEdit(todoId: state.pathParameters['id'])),
       ],
     )
   ],

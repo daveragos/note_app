@@ -37,13 +37,75 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
     super.initState();
     titleController.addListener(change);
     descriptionController.addListener(change);
+    if (widget.todoId != null) {
+      model.getTodo(widget.todoId!).then((value) {
+        if (value != null) {
+          titleController.text = value.title;
+          descriptionController.text = value.description ?? '';
+          if (mounted) {
+            setState(() {
+              isCompleted = value.completed;
+            });
+          }
+        }
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Todo'),
+        title: widget.todoId == null
+            ? const Text('New Todo')
+            : const Text('Edit Todo'),
+        actions: [
+          if (widget.todoId != null)
+            IconButton(
+              onPressed: () async {
+                final messenger = ScaffoldMessenger.of(context);
+                final router = GoRouter.of(context);
+                final result = await showDialog<bool>(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('Delete Todo?'),
+                      content: const Text(
+                          'Are you sure you want to delete this todo?'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(false);
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor:
+                                Theme.of(context).colorScheme.error,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop(true);
+                          },
+                          child: const Text('Delete'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+                if (result == true) {
+                  final todo = await model.getTodo(widget.todoId!);
+                  await model.deleteTodo(todo!);
+                  messenger.toast('Todo Deleted!');
+                  if (router.canPop()) {
+                    router.pop();
+                  }
+                }
+              },
+              icon: const Icon(Icons.delete),
+              tooltip: 'Delete',
+            ),
+        ],
       ),
       body: Scrollbar(
         child: SingleChildScrollView(
@@ -138,7 +200,7 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
             _formKey.currentState!.save();
 
             final todo = Todo(
-                id: shortid.generate(),
+                id: widget.todoId ?? shortid.generate(),
                 title: titleController.text,
                 description: descriptionController.text,
                 completed: isCompleted);
