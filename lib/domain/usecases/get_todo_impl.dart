@@ -1,5 +1,5 @@
-import 'package:note_app/domain/model/todo.dart';
-import 'package:note_app/domain/model/todos.dart';
+import 'package:note_app/domain/entity/todo.dart';
+import 'package:note_app/domain/entity/todos.dart';
 import 'package:note_app/domain/repository/todos.dart';
 import 'package:note_app/domain/usecases/get_todo.dart';
 

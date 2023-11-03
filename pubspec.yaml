@@ -17,10 +17,12 @@ dependencies:
   json_annotation: ^4.8.1
   riverpod_annotation: ^2.3.0
   flutter_riverpod: ^2.4.5
-  collection: ^1.17.2
-  go_router: ^12.0.1
+  collection: ^1.18.0
+  go_router: ^12.1.0
   riverpod: ^2.4.5
   shortid: ^0.1.2
+  hive: 
+  hive_flutter: 
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +30,7 @@ dev_dependencies:
   
   flutter_lints: ^2.0.0
   riverpod_generator: ^2.3.5
+  hive_generator: 
   build_runner: ^2.4.6
   freezed: ^2.4.5
   json_serializable: ^6.7.1

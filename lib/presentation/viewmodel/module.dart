@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:note_app/domain/model/todo.dart';
-import 'package:note_app/domain/model/todos.dart';
+import 'package:note_app/domain/entity/todo.dart';
+import 'package:note_app/domain/entity/todos.dart';
 import 'package:note_app/domain/usecases/module.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // final todosListNotifier = ChangeNotifierProvider<ValueNotifier<Todos>>(
 //   (ref) => ValueNotifier(

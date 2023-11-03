@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:note_app/data/source/files.dart';
-import 'package:note_app/domain/model/todo.dart';
-import 'package:note_app/domain/model/todos.dart';
+import 'package:note_app/domain/entity/todo.dart';
+import 'package:note_app/domain/entity/todos.dart';
 import 'package:note_app/domain/repository/todos.dart';
 
 class TodosRepositoryImpl extends TodosRepository {
