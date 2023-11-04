@@ -1,9 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:note_app/data/source/files.dart';
-import 'package:note_app/data/source/files_memory_impl.dart';
+import 'package:hive/hive.dart';
+import 'package:note_app/data/model/todo_model.dart';
+import 'package:note_app/data/source/todo_localdb.dart';
+import 'package:note_app/data/source/todo_localdb_impl.dart';
 
-final filesProvider = Provider<Files>(
+final localDbProvider = Provider<TodoLocalDB>(
   (ref) {
-    return FilesMemoryImpl();
+    final Box<TodoModel> box = Hive.box('todos');
+    return TodoLocalDBImpl(box);
   },
 );

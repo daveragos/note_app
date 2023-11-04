@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:note_app/domain/entity/todo.dart';
-import 'package:note_app/presentation/viewmodel/module.dart';
+import 'package:note_app/presentation/providers/module.dart';
 import 'package:note_app/presentation/widgets/extensions.dart';
 import 'package:shortid/shortid.dart';
 
@@ -206,7 +206,12 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
 
             final messenger = ScaffoldMessenger.of(context);
             final router = GoRouter.of(context);
-            await model.saveTodos(todo);
+            if (widget.todoId == null) {
+              await model.saveTodos(todo);
+            } else {
+              await model.updateTodos(todo);
+            }
+
             messenger.toast('Todo Saved!');
             if (router.canPop()) {
               router.pop();

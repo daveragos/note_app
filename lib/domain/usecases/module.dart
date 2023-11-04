@@ -8,6 +8,8 @@ import 'package:note_app/domain/usecases/get_todos.dart';
 import 'package:note_app/domain/usecases/get_todos_impl.dart';
 import 'package:note_app/domain/usecases/save_todo.dart';
 import 'package:note_app/domain/usecases/save_todo_impl.dart';
+import 'package:note_app/domain/usecases/update_todo.dart';
+import 'package:note_app/domain/usecases/update_todo_impl.dart';
 
 final getTodosProvider = Provider<GetTodosUseCase>((ref) {
   return GetTodosUseCaseImpl(ref.read(todosProvider));
@@ -23,4 +25,8 @@ final deleteTodoProvider = Provider<DeleteTodoUseCase>((ref) {
 
 final saveTodoProvider = Provider<SaveTodoUseCase>((ref) {
   return SaveTodoUseCaseImpl(ref.read(todosProvider));
+});
+
+final updateTodoProvider = Provider<UpdateTodoUseCase>((ref) {
+  return UpdateTodoUseCaseImpl(ref.read(todosProvider));
 });
