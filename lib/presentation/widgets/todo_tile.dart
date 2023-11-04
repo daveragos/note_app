@@ -13,7 +13,18 @@ class TodoTile extends ConsumerWidget {
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Colors.grey[500]),
+        boxShadow: List.filled(
+            6,
+            BoxShadow(
+              color: Colors.green.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 1,
+              offset: const Offset(0, 3),
+            )),
+        borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(40), bottomLeft: Radius.circular(40)),
+        color: Colors.green[600],
+      ),
       child: ListTile(
         title: Text(todo.title),
         subtitle: todo.description != null && todo.description!.isNotEmpty

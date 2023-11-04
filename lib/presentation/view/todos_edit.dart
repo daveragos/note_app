@@ -54,7 +54,9 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[400],
       appBar: AppBar(
+        backgroundColor: Colors.green[400],
         title: widget.todoId == null
             ? const Text('New Todo')
             : const Text('Edit Todo'),

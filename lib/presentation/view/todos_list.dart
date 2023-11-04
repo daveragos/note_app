@@ -13,7 +13,9 @@ class TodosList extends ConsumerWidget {
     final active = todosList.active;
     final completed = todosList.completed;
     return Scaffold(
+      backgroundColor: Colors.green[300],
       appBar: AppBar(
+        backgroundColor: Colors.green,
         actions: [
           IconButton(
             onPressed: () {

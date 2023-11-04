@@ -8,7 +8,7 @@ class TodoLocalDBImpl extends TodoLocalDB {
 
   @override
   Future<void> create(TodoModel model) async {
-    todoBox.add(model);
+    todoBox.put(model.id, model);
   }
 
   @override
@@ -18,13 +18,11 @@ class TodoLocalDBImpl extends TodoLocalDB {
 
   @override
   Future<void> update(TodoModel model) async {
-    //getting the id from the model and finding the key for model ion the box with the same id
-    final key = todoBox.keys.firstWhere((element) => element == model.id);
-    todoBox.put(key, model);
+    todoBox.put(model.id, model);
   }
 
   @override
   Future<void> delete(TodoModel model) async {
-    todoBox.delete(model);
+    todoBox.delete(model.id);
   }
 }

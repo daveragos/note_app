@@ -16,12 +16,12 @@ class TodosApp extends StatelessWidget {
         useMaterial3: true,
       ).copyWith(
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.greenAccent, brightness: Brightness.light)),
+              seedColor: Colors.green, brightness: Brightness.light)),
       darkTheme: ThemeData.dark(
         useMaterial3: true,
       ).copyWith(
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.greenAccent, brightness: Brightness.dark)),
+              seedColor: Colors.green, brightness: Brightness.dark)),
       themeMode: ThemeMode.system,
     );
   }

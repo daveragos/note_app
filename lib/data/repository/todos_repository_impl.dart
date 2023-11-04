@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:collection/collection.dart';
 import 'package:note_app/data/model/todo_model.dart';
 import 'package:note_app/data/source/todo_localdb.dart';
@@ -13,33 +11,23 @@ class TodosRepositoryImpl extends TodosRepository {
 
   @override
   Future<void> saveTodo(Todo todo) async {
-    //first check if exist by loading the existing
-    //if exist update by comapring with copywith
-    //if not exist add new
     final todos = await loadTodos();
     final todoModel = TodoModel.fromEntity(todo);
+    //check if already exist in the todos
     final todoIndex =
-        todos.values.indexWhere((element) => element.id == todo.id);
-    if (todoIndex != -1) {
-      todos.values[todoIndex] = todo;
+        todos.values.takeWhile((element) => element.id == todo.id);
+    if (todoIndex.isEmpty) {
       localDB.create(todoModel);
     } else {
-      localDB.create(todoModel);
+      localDB.update(todoModel);
     }
   }
 
   @override
   Future<void> updateTodo(Todo todo) async {
     final todos = await loadTodos();
+
     final todoModel = TodoModel.fromEntity(todo);
-    final todoIndex =
-        todos.values.indexWhere((element) => element.id == todo.id);
-    if (todoIndex != -1) {
-      todos.values[todoIndex] = todo;
-      localDB.update(todoModel);
-    } else {
-      localDB.create(todoModel);
-    }
   }
 
   @override
