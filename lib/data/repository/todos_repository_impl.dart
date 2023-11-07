@@ -25,9 +25,8 @@ class TodosRepositoryImpl extends TodosRepository {
 
   @override
   Future<void> updateTodo(Todo todo) async {
-    final todos = await loadTodos();
-
     final todoModel = TodoModel.fromEntity(todo);
+    localDB.update(todoModel);
   }
 
   @override
