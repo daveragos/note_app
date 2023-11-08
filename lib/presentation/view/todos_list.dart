@@ -28,7 +28,8 @@ class TodosList extends ConsumerWidget {
         automaticallyImplyLeading: false,
         title: const Center(child: Text('Todos')),
       ),
-      body: Column(
+      body: Stack(
+        fit: StackFit.expand,
         children: [
           Expanded(
             child: active.isEmpty
@@ -43,10 +44,28 @@ class TodosList extends ConsumerWidget {
                     },
                   ),
           ),
-          ExpansionTile(
-            title: const Text('Completed'),
-            children: [for (final todo in completed) TodoTile(todo: todo)],
+          DraggableScrollableSheet(
+            initialChildSize: 0.15,
+            minChildSize: 0.15,
+            maxChildSize: 0.8,
+            builder: (context, scrollController) {
+              return Container(
+                color: Colors.white60,
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: completed.length,
+                  itemBuilder: (context, index) {
+                    final todo = completed[index];
+                    return TodoTile(todo: todo);
+                  },
+                ),
+              );
+            },
           )
+          // ExpansionTile(
+          //   title: const Text('Completed'),
+          //   children: [for (final todo in completed) TodoTile(todo: todo)],
+          // )
         ],
       ),
     );
