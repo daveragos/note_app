@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/presentation/router.dart';
+import 'package:note_app/app/config/theme/theme.dart';
+import 'router.dart';
 
 class TodosApp extends StatelessWidget {
   const TodosApp({super.key});
@@ -12,16 +13,7 @@ class TodosApp extends StatelessWidget {
       routeInformationParser: router.routeInformationParser,
       routeInformationProvider: router.routeInformationProvider,
       routerDelegate: router.routerDelegate,
-      theme: ThemeData.light(
-        useMaterial3: true,
-      ).copyWith(
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.green, brightness: Brightness.light)),
-      darkTheme: ThemeData.dark(
-        useMaterial3: true,
-      ).copyWith(
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.green, brightness: Brightness.dark)),
+      theme: AppTheme.light,
       themeMode: ThemeMode.system,
     );
   }

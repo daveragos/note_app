@@ -1,6 +1,7 @@
 import 'package:note_app/domain/entity/todos.dart';
-import 'package:note_app/domain/repository/todos.dart';
-import 'package:note_app/domain/usecases/get_todos.dart';
+
+import '../repository/todos.dart';
+import 'get_todos.dart';
 
 class GetTodosUseCaseImpl extends GetTodosUseCase {
   GetTodosUseCaseImpl(this.todoRepository);

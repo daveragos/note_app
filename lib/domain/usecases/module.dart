@@ -1,15 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:note_app/data/repository/module.dart';
-import 'package:note_app/domain/usecases/delete_todo.dart';
-import 'package:note_app/domain/usecases/delete_todo_impl.dart';
-import 'package:note_app/domain/usecases/get_todo.dart';
-import 'package:note_app/domain/usecases/get_todo_impl.dart';
-import 'package:note_app/domain/usecases/get_todos.dart';
-import 'package:note_app/domain/usecases/get_todos_impl.dart';
-import 'package:note_app/domain/usecases/save_todo.dart';
-import 'package:note_app/domain/usecases/save_todo_impl.dart';
-import 'package:note_app/domain/usecases/update_todo.dart';
-import 'package:note_app/domain/usecases/update_todo_impl.dart';
+import '../../data/repository/module.dart';
+import 'delete_todo.dart';
+import 'delete_todo_impl.dart';
+import 'get_todo.dart';
+import 'get_todo_impl.dart';
+import 'get_todos.dart';
+import 'get_todos_impl.dart';
+import 'save_todo.dart';
+import 'save_todo_impl.dart';
+import 'update_todo.dart';
+import 'update_todo_impl.dart';
 
 final getTodosProvider = Provider<GetTodosUseCase>((ref) {
   return GetTodosUseCaseImpl(ref.read(todosProvider));

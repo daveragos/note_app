@@ -1,6 +1,6 @@
-import 'package:note_app/domain/entity/todo.dart';
-import 'package:note_app/domain/repository/todos.dart';
-import 'package:note_app/domain/usecases/delete_todo.dart';
+import '../entity/todo.dart';
+import '../repository/todos.dart';
+import 'delete_todo.dart';
 
 class DeleteTodoUseCaseImpl extends DeleteTodoUseCase {
   DeleteTodoUseCaseImpl(this.todosRepository);

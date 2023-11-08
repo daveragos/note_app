@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:note_app/domain/entity/todo.dart';
-import 'package:note_app/presentation/providers/module.dart';
+import '../../domain/entity/todo.dart';
+import '../providers/module.dart';
 
 class TodoTile extends ConsumerWidget {
   const TodoTile({super.key, required this.todo});

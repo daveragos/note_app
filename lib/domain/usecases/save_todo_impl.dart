@@ -1,6 +1,6 @@
-import 'package:note_app/domain/entity/todo.dart';
-import 'package:note_app/domain/repository/todos.dart';
-import 'package:note_app/domain/usecases/save_todo.dart';
+import '../entity/todo.dart';
+import '../repository/todos.dart';
+import 'save_todo.dart';
 
 class SaveTodoUseCaseImpl extends SaveTodoUseCase {
   SaveTodoUseCaseImpl(this.todosRepository);

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:note_app/data/model/todo_model.dart';
-import 'package:note_app/data/source/todo_localdb.dart';
+import '../model/todo_model.dart';
+import 'todo_localdb.dart';
 
 class TodoLocalDBImpl extends TodoLocalDB {
   TodoLocalDBImpl(this.todoBox);

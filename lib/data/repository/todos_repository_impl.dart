@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
-import 'package:note_app/data/model/todo_model.dart';
-import 'package:note_app/data/source/todo_localdb.dart';
-import 'package:note_app/domain/entity/todo.dart';
 import 'package:note_app/domain/entity/todos.dart';
-import 'package:note_app/domain/repository/todos.dart';
+import '../model/todo_model.dart';
+import '../source/todo_localdb.dart';
+import '../../domain/entity/todo.dart';
+import '../../domain/repository/todos.dart';
 
 class TodosRepositoryImpl extends TodosRepository {
   TodosRepositoryImpl(this.localDB);

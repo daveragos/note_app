@@ -23,6 +23,9 @@ mixin _$Todo {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  String get time => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError;
+  TaskCategory get category => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +38,14 @@ abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
       _$TodoCopyWithImpl<$Res, Todo>;
   @useResult
-  $Res call({String id, String title, String? description, bool completed});
+  $Res call(
+      {String id,
+      String title,
+      String? description,
+      String time,
+      String date,
+      TaskCategory category,
+      bool completed});
 }
 
 /// @nodoc
@@ -54,6 +64,9 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
     Object? id = null,
     Object? title = null,
     Object? description = freezed,
+    Object? time = null,
+    Object? date = null,
+    Object? category = null,
     Object? completed = null,
   }) {
     return _then(_value.copyWith(
@@ -69,6 +82,18 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      time: null == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as TaskCategory,
       completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
@@ -84,7 +109,14 @@ abstract class _$$TodoImplCopyWith<$Res> implements $TodoCopyWith<$Res> {
       __$$TodoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, String? description, bool completed});
+  $Res call(
+      {String id,
+      String title,
+      String? description,
+      String time,
+      String date,
+      TaskCategory category,
+      bool completed});
 }
 
 /// @nodoc
@@ -100,6 +132,9 @@ class __$$TodoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? description = freezed,
+    Object? time = null,
+    Object? date = null,
+    Object? category = null,
     Object? completed = null,
   }) {
     return _then(_$TodoImpl(
@@ -115,6 +150,18 @@ class __$$TodoImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      time: null == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as TaskCategory,
       completed: null == completed
           ? _value.completed
           : completed // ignore: cast_nullable_to_non_nullable
@@ -126,10 +173,13 @@ class __$$TodoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TodoImpl with DiagnosticableTreeMixin implements _Todo {
-  const _$TodoImpl(
+  _$TodoImpl(
       {required this.id,
       required this.title,
       this.description,
+      required this.time,
+      required this.date,
+      required this.category,
       this.completed = false});
 
   factory _$TodoImpl.fromJson(Map<String, dynamic> json) =>
@@ -142,12 +192,18 @@ class _$TodoImpl with DiagnosticableTreeMixin implements _Todo {
   @override
   final String? description;
   @override
+  final String time;
+  @override
+  final String date;
+  @override
+  final TaskCategory category;
+  @override
   @JsonKey()
   final bool completed;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Todo(id: $id, title: $title, description: $description, completed: $completed)';
+    return 'Todo(id: $id, title: $title, description: $description, time: $time, date: $date, category: $category, completed: $completed)';
   }
 
   @override
@@ -158,6 +214,9 @@ class _$TodoImpl with DiagnosticableTreeMixin implements _Todo {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('time', time))
+      ..add(DiagnosticsProperty('date', date))
+      ..add(DiagnosticsProperty('category', category))
       ..add(DiagnosticsProperty('completed', completed));
   }
 
@@ -170,14 +229,18 @@ class _$TodoImpl with DiagnosticableTreeMixin implements _Todo {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             (identical(other.completed, completed) ||
                 other.completed == completed));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, description, completed);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, description, time, date, category, completed);
 
   @JsonKey(ignore: true)
   @override
@@ -194,10 +257,13 @@ class _$TodoImpl with DiagnosticableTreeMixin implements _Todo {
 }
 
 abstract class _Todo implements Todo {
-  const factory _Todo(
+  factory _Todo(
       {required final String id,
       required final String title,
       final String? description,
+      required final String time,
+      required final String date,
+      required final TaskCategory category,
       final bool completed}) = _$TodoImpl;
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$TodoImpl.fromJson;
@@ -208,6 +274,12 @@ abstract class _Todo implements Todo {
   String get title;
   @override
   String? get description;
+  @override
+  String get time;
+  @override
+  String get date;
+  @override
+  TaskCategory get category;
   @override
   bool get completed;
   @override

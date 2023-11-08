@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:note_app/domain/entity/todo.dart';
-import 'package:note_app/presentation/providers/module.dart';
-import 'package:note_app/presentation/widgets/extensions.dart';
+import 'package:note_app/domain/entity/todo_category.dart';
+import '../../domain/entity/todo.dart';
+import '../providers/module.dart';
+import '../widgets/extensions.dart';
 import 'package:shortid/shortid.dart';
 
 class TodosEdit extends ConsumerStatefulWidget {
@@ -204,7 +205,10 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
                 id: widget.todoId ?? shortid.generate(),
                 title: titleController.text,
                 description: descriptionController.text,
-                completed: isCompleted);
+                completed: isCompleted,
+                time: 'today',
+                date: 'now',
+                category: TaskCategory.education);
 
             final messenger = ScaffoldMessenger.of(context);
             final router = GoRouter.of(context);

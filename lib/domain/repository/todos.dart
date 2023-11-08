@@ -1,5 +1,6 @@
-import 'package:note_app/domain/entity/todo.dart';
 import 'package:note_app/domain/entity/todos.dart';
+
+import '../entity/todo.dart';
 
 abstract class TodosRepository {
   Future<Todos> loadTodos();
