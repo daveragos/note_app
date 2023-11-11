@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:note_app/app/utils/extensions.dart';
 import 'package:note_app/domain/entity/todo_category.dart';
+import 'package:note_app/presentation/widgets/costum_form_field.dart';
+import 'package:note_app/presentation/widgets/select_date_time.dart';
 import '../../domain/entity/todo.dart';
 import '../providers/module.dart';
 import '../widgets/extensions.dart';
 import 'package:shortid/shortid.dart';
+import 'package:gap/gap.dart';
 
 class TodosEdit extends ConsumerStatefulWidget {
   const TodosEdit({super.key, this.todoId});
@@ -19,6 +24,9 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
   final _formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+  final categoryController = TextEditingController();
+  final dateController = TextEditingController();
+  final timeController = TextEditingController();
   bool isCompleted = false;
   bool edited = false;
   late final model = ref.read(todosListModel);
@@ -36,6 +44,10 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
     super.initState();
     titleController.addListener(change);
     descriptionController.addListener(change);
+    categoryController.addListener(change);
+    dateController.addListener(change);
+    timeController.addListener(change);
+
     if (widget.todoId != null) {
       model.getTodo(widget.todoId!).then((value) {
         if (value != null) {
@@ -55,9 +67,7 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[400],
       appBar: AppBar(
-        backgroundColor: Colors.green[400],
         title: widget.todoId == null
             ? const Text('New Todo')
             : const Text('Edit Todo'),
@@ -111,6 +121,7 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
       ),
       body: Scrollbar(
         child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Form(
             key: _formKey,
             onWillPop: () async {
@@ -153,31 +164,19 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
             autovalidateMode: AutovalidateMode.always,
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: TextFormField(
-                    controller: titleController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Title',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter title';
-                      }
-                      return null;
-                    },
-                  ),
+                costumFormField(
+                  controller: titleController,
+                  title: 'Todo Title',
+                  hintText: 'Enter Title',
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: TextFormField(
-                    controller: descriptionController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Description',
-                    ),
-                  ),
+                SelectDateTime(
+                    dateController: dateController,
+                    timeController: timeController),
+                costumFormField(
+                  controller: descriptionController,
+                  title: 'Description (optional)',
+                  hintText: 'Enter Descriptio',
+                  maxLine: 6,
                 ),
                 CheckboxListTile(
                   title: const Text('Completed'),
@@ -205,9 +204,9 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
                 id: widget.todoId ?? shortid.generate(),
                 title: titleController.text,
                 description: descriptionController.text,
+                date: dateController.text,
+                time: timeController.text,
                 completed: isCompleted,
-                time: 'today',
-                date: 'now',
                 category: TaskCategory.education);
 
             final messenger = ScaffoldMessenger.of(context);
