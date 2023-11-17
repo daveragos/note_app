@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:note_app/app/utils/extensions.dart';
 import 'package:note_app/domain/entity/todo.dart';
 import 'package:note_app/domain/entity/todo_category.dart';
-import 'package:note_app/domain/entity/todos.dart';
 import 'package:note_app/presentation/view/todos_detail.dart';
 import '../providers/module.dart';
 import '../widgets/todo_tile.dart';

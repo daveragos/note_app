@@ -1,6 +1,5 @@
 import '../entity/todo.dart';
 import '../repository/todos.dart';
-import 'save_todo.dart';
 import 'update_todo.dart';
 
 class UpdateTodoUseCaseImpl extends UpdateTodoUseCase {

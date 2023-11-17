@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:note_app/app/utils/extensions.dart';
 import 'package:note_app/domain/entity/todo_category.dart';
 import 'package:note_app/presentation/widgets/costum_form_field.dart';
 import 'package:note_app/presentation/widgets/select_date_time.dart';
@@ -10,7 +8,6 @@ import '../../domain/entity/todo.dart';
 import '../providers/module.dart';
 import '../widgets/extensions.dart';
 import 'package:shortid/shortid.dart';
-import 'package:gap/gap.dart';
 
 class TodosEdit extends ConsumerStatefulWidget {
   const TodosEdit({super.key, this.todoId});
