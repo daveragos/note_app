@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:note_app/domain/entity/todo_category.dart';
 import 'package:note_app/domain/entity/todos.dart';
 import '../../domain/entity/todo.dart';
 import '../../domain/usecases/module.dart';
@@ -41,4 +42,8 @@ final todosListState = StateNotifierProvider<TodosStateNotifier, Todos>(
 
 final todosListModel = Provider<TodosStateNotifier>((ref) {
   return ref.watch(todosListState.notifier);
+});
+
+final selectedCategoryProvider = StateProvider<TaskCategory>((ref) {
+  return TaskCategory.others;
 });

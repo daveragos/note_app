@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:note_app/app/utils/extensions.dart';
-import 'package:note_app/domain/entity/todo.dart';
-import 'package:note_app/domain/entity/todo_category.dart';
 import 'package:note_app/presentation/view/todos_detail.dart';
 import '../providers/module.dart';
 import '../widgets/todo_tile.dart';
@@ -17,63 +15,7 @@ class TodosList extends ConsumerWidget {
     final deviceSize = context.deviceSize;
 
     final todosList = ref.watch(todosListState);
-    final todoist = [
-      Todo(
-          id: '2',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          description: 'some description here',
-          category: TaskCategory.education),
-      Todo(
-          id: '3',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          category: TaskCategory.health),
-      Todo(
-          id: '4',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          category: TaskCategory.home),
-      Todo(
-          id: '5',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          category: TaskCategory.others),
-      Todo(
-          id: '6',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          category: TaskCategory.personal),
-      Todo(
-          id: '6',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          category: TaskCategory.shopping),
-      Todo(
-          id: '6',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          category: TaskCategory.social),
-      Todo(
-          id: '6',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          category: TaskCategory.travel),
-      Todo(
-          id: '6',
-          title: 'title',
-          time: 'time',
-          date: 'date',
-          category: TaskCategory.personal),
-    ];
+
     final active = todosList.active;
     final completed = todosList.completed;
     return SafeArea(
@@ -131,33 +73,31 @@ class TodosList extends ConsumerWidget {
                         color: color.primaryContainer,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child:
-                          //  active.isEmpty
-                          //     ? const Center(
-                          //         child: Text('TODO is empty!',
-                          //             style: TextStyle(
-                          //                 fontSize: 20, color: Colors.grey)),
-                          //       )
-                          //     :
-                          ListView.builder(
-                        itemCount: todoist.length,
-                        itemBuilder: (context, index) {
-                          final todo = todoist[index];
-                          return InkWell(
-                              onTap: () async {
-                                //for detail page
-                                await showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return TodoDetail(todo: todo);
-                                    });
+                      child: active.isEmpty
+                          ? const Center(
+                              child: Text('TODO is empty!',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.grey)),
+                            )
+                          : ListView.builder(
+                              itemCount: active.length,
+                              itemBuilder: (context, index) {
+                                final todo = active[index];
+                                return InkWell(
+                                    onTap: () async {
+                                      //for detail page
+                                      await showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) {
+                                            return TodoDetail(todo: todo);
+                                          });
+                                    },
+                                    onLongPress: () {
+                                      context.go('/todos/${todo.id}');
+                                    },
+                                    child: TodoTile(todo: todo));
                               },
-                              onLongPress: () {
-                                context.go('/todos/${todo.id}');
-                              },
-                              child: TodoTile(todo: todo));
-                        },
-                      ),
+                            ),
                     ),
                   ],
                 ),
@@ -175,34 +115,32 @@ class TodosList extends ConsumerWidget {
                   ),
                   child: Container(
                     color: color.tertiaryContainer,
-                    child:
-                        //  completed.isEmpty
-                        //     ? const Center(
-                        //         child: Text('No Completed Task yet!',
-                        //             style:
-                        //                 TextStyle(fontSize: 20, color: Colors.grey)),
-                        //       )
-                        //     :
-                        ListView.builder(
-                      controller: scrollController,
-                      itemCount: todoist.length,
-                      itemBuilder: (context, index) {
-                        final todo = todoist[index];
-                        return InkWell(
-                            onTap: () async {
-                              //for detail page
-                              await showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return TodoDetail(todo: todo);
-                                  });
+                    child: completed.isEmpty
+                        ? const Center(
+                            child: Text('No Completed Task yet!',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.grey)),
+                          )
+                        : ListView.builder(
+                            controller: scrollController,
+                            itemCount: active.length,
+                            itemBuilder: (context, index) {
+                              final todo = active[index];
+                              return InkWell(
+                                  onTap: () async {
+                                    //for detail page
+                                    await showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return TodoDetail(todo: todo);
+                                        });
+                                  },
+                                  onLongPress: () {
+                                    context.go('/todos/${todo.id}');
+                                  },
+                                  child: TodoTile(todo: todo));
                             },
-                            onLongPress: () {
-                              context.go('/todos/${todo.id}');
-                            },
-                            child: TodoTile(todo: todo));
-                      },
-                    ),
+                          ),
                   ),
                 );
               },

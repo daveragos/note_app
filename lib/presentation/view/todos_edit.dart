@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:note_app/domain/entity/todo_category.dart';
 import 'package:note_app/presentation/widgets/costum_form_field.dart';
 import 'package:note_app/presentation/widgets/select_category.dart';
 import 'package:note_app/presentation/widgets/select_date_time.dart';
@@ -64,6 +63,8 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
 
   @override
   Widget build(BuildContext context) {
+    final selecetedCategory =
+        ref.watch(selectedCategoryProvider.notifier).state;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -203,7 +204,7 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
                               date: dateController.text,
                               time: timeController.text,
                               completed: isCompleted,
-                              category: TaskCategory.education);
+                              category: selecetedCategory);
 
                           final messenger = ScaffoldMessenger.of(context);
                           final router = GoRouter.of(context);
@@ -219,7 +220,7 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
                           }
                         }
                       },
-                      child: Text('Save'))
+                      child: const Text('Save'))
                 ],
               ),
             ),
