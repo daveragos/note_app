@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:note_app/presentation/widgets/costum_form_field.dart';
+import 'package:intl/intl.dart';
 
 class SelectDateTime extends StatelessWidget {
   const SelectDateTime({
@@ -18,7 +19,7 @@ class SelectDateTime extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: costumFormField(
+          child: CostumFormField(
             controller: dateController,
             title: 'Date',
             readOnly: true,
@@ -30,7 +31,7 @@ class SelectDateTime extends StatelessWidget {
         ),
         const Gap(10),
         Expanded(
-          child: costumFormField(
+          child: CostumFormField(
             controller: timeController,
             title: 'Time',
             readOnly: true,
@@ -45,12 +46,12 @@ class SelectDateTime extends StatelessWidget {
   }
 
   void _selectTime(BuildContext context) async {
-    TimeOfDay? pickedDate = await showTimePicker(
+    TimeOfDay? pickedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    if (pickedDate != null) {
-      timeController.text = pickedDate.format(context);
+    if (pickedTime != null) {
+      timeController.text = pickedTime.format(context);
     }
   }
 
@@ -62,7 +63,7 @@ class SelectDateTime extends StatelessWidget {
       lastDate: DateTime(2101),
     );
     if (pickedDate != null) {
-      dateController.text = pickedDate.toString();
+      dateController.text = DateFormat.yMMMd().format(pickedDate);
     }
   }
 }

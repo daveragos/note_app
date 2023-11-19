@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/app/utils/extensions.dart';
 
-class costumFormField extends StatelessWidget {
-  const costumFormField({
+class CostumFormField extends StatelessWidget {
+  const CostumFormField({
     super.key,
     required this.controller,
     required this.title,
@@ -37,6 +37,7 @@ class costumFormField extends StatelessWidget {
             controller: controller,
             decoration: InputDecoration(
               hintText: hintText,
+              suffixIcon: suffixIcon,
               border: const OutlineInputBorder(),
               labelText: hintText,
             ),

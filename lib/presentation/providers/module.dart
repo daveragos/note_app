@@ -3,12 +3,6 @@ import 'package:note_app/domain/entity/todos.dart';
 import '../../domain/entity/todo.dart';
 import '../../domain/usecases/module.dart';
 
-// final todosListNotifier = ChangeNotifierProvider<ValueNotifier<Todos>>(
-//   (ref) => ValueNotifier(
-//     const Todos(values: []),
-//   ),
-// );
-
 class TodosStateNotifier extends StateNotifier<Todos> {
   TodosStateNotifier(this.ref) : super(const Todos(values: [])) {
     loadTodos();
