@@ -31,20 +31,24 @@ class SelectCategory extends ConsumerWidget {
                         category;
                   },
                   child: Container(
+                    padding: EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: category.color.withOpacity(0.3),
+                      color: category == selectedCategory
+                          ? context.colorScheme.onBackground.withOpacity(0.3)
+                          : category.color.withOpacity(0.3),
                     ),
                     child: Icon(
                       category.icon,
                       color: category == selectedCategory
                           ? context.colorScheme.primary
                           : category.color,
+                      size: category == selectedCategory ? 35 : 25,
                     ),
                   ),
                 );
               },
-              separatorBuilder: (context, index) => const Gap(10),
+              separatorBuilder: (context, index) => const Gap(5),
             ),
           )
         ],

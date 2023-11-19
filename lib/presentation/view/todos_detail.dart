@@ -31,6 +31,7 @@ class TodoDetail extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          //time
           Text(
             'Time: ${todo.time}',
             style: const TextStyle(
@@ -66,18 +67,11 @@ class TodoDetail extends StatelessWidget {
           ),
           Visibility(
             visible: !todo.completed,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'todo to be completed on ${todo.date}',
-                  style: const TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                const Gap(20),
-                Icon(Icons.check_box, color: todo.category.color)
-              ],
+            child: Text(
+              'todo to be completed on ${todo.date}',
+              style: const TextStyle(
+                fontSize: 18,
+              ),
             ),
           ),
         ],

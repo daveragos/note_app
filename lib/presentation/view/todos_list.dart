@@ -123,9 +123,9 @@ class TodosList extends ConsumerWidget {
                           )
                         : ListView.builder(
                             controller: scrollController,
-                            itemCount: active.length,
+                            itemCount: completed.length,
                             itemBuilder: (context, index) {
-                              final todo = active[index];
+                              final todo = completed[index];
                               return InkWell(
                                   onTap: () async {
                                     //for detail page
