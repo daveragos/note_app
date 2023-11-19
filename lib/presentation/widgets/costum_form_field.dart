@@ -10,6 +10,7 @@ class CostumFormField extends StatelessWidget {
     this.maxLine,
     this.suffixIcon,
     this.readOnly = false,
+    this.useValidator = true, // New parameter
   });
 
   final TextEditingController controller;
@@ -18,6 +19,7 @@ class CostumFormField extends StatelessWidget {
   final int? maxLine;
   final Widget? suffixIcon;
   final bool readOnly;
+  final bool useValidator; // New field
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +43,14 @@ class CostumFormField extends StatelessWidget {
               border: const OutlineInputBorder(),
               labelText: hintText,
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter $title';
-              }
-              return null;
-            },
+            validator: useValidator // Check if the validator should be used
+                ? (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter $title';
+                    }
+                    return null;
+                  }
+                : null, // If not, pass null to the validator parameter
             maxLines: maxLine,
           ),
         ),

@@ -5,6 +5,7 @@ import 'package:note_app/app/utils/extensions.dart';
 import 'package:note_app/presentation/view/todos_detail.dart';
 import '../providers/module.dart';
 import '../widgets/todo_tile.dart';
+import 'package:intl/intl.dart';
 
 class TodosList extends ConsumerWidget {
   const TodosList({super.key});
@@ -43,7 +44,7 @@ class TodosList extends ConsumerWidget {
                         ],
                       ),
                       Text(
-                        'Aug, 7, 2023',
+                        DateFormat.yMMMd().format(DateTime.now()),
                         style: context.textTheme.headlineSmall
                             ?.copyWith(color: color.surface, fontSize: 20),
                       ),

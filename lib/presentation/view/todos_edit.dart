@@ -40,7 +40,6 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
   void initState() {
     super.initState();
     titleController.addListener(change);
-    descriptionController.addListener(change);
     categoryController.addListener(change);
     dateController.addListener(change);
     timeController.addListener(change);
@@ -50,6 +49,9 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
         if (value != null) {
           titleController.text = value.title;
           descriptionController.text = value.description ?? '';
+          ref.read(selectedCategoryProvider.notifier).state = value.category;
+          dateController.text = value.date;
+          timeController.text = value.time;
           if (mounted) {
             setState(() {
               isCompleted = value.completed;
@@ -177,8 +179,9 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
                   CostumFormField(
                     controller: descriptionController,
                     title: 'Description (optional)',
-                    hintText: 'Enter Descriptio',
+                    hintText: 'Enter Description',
                     maxLine: 6,
+                    useValidator: false,
                   ),
                   CheckboxListTile(
                     title: const Text('Completed'),
