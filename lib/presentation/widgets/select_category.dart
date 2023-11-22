@@ -31,7 +31,7 @@ class SelectCategory extends ConsumerWidget {
                         category;
                   },
                   child: Container(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: category == selectedCategory

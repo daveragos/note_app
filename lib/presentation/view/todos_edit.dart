@@ -65,8 +65,7 @@ class _TodosEditState extends ConsumerState<TodosEdit> {
 
   @override
   Widget build(BuildContext context) {
-    final selecetedCategory =
-        ref.watch(selectedCategoryProvider.notifier).state;
+    final selecetedCategory = ref.watch(selectedCategoryProvider);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

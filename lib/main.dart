@@ -14,9 +14,6 @@ void main() async {
   Hive.registerAdapter(TodoModelAdapter());
   Hive.registerAdapter(TaskCategoryAdapter());
 
-  // Delete the box
-  await Hive.deleteBoxFromDisk('todos');
-
   // Reopen the box
   await Hive.openBox<TodoModel>('todos');
 
